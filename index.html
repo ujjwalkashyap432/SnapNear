@@ -125,7 +125,6 @@
   </script>
 
   <style>
-    /* 3D Perspective Stage */
     .perspective-stage {
       perspective: 1200px;
       perspective-origin: center center;
@@ -136,10 +135,17 @@
     }
     @keyframes gentlePulse {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(1.5deg); }
+      50% { transform: translateY(-10px) rotate(1.5deg); }
+    }
+    @keyframes gentleDrift {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(12px) rotate(-2deg); }
     }
     .animate-gentle {
       animation: gentlePulse 8s ease-in-out infinite;
+    }
+    .animate-gentle-reverse {
+      animation: gentleDrift 10s ease-in-out infinite;
     }
   </style>
 </head>
@@ -148,43 +154,28 @@
   <!-- ================= 3D INTERACTIVE BACKGROUND SCENE ================= -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden perspective-stage" aria-hidden="true">
     
-    <!-- Hero 3D Interactive Floating Camera Container -->
-    <div id="camera3DWrapper" class="absolute top-1/4 right-[5%] sm:right-[15%] w-72 sm:w-96 preserve-3d transition-transform duration-150 ease-out">
+    <!-- 1. 3D Floating Camera (Hero Section) -->
+    <div id="camera3DWrapper" class="absolute top-[18%] right-[2%] sm:right-[12%] w-80 sm:w-[460px] preserve-3d transition-transform duration-100 ease-out">
       <div class="animate-gentle">
         <img 
           id="camera3DImage"
           src="camera-3d.png" 
           alt="3D Floating Camera" 
-          class="w-full h-auto object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.12)] opacity-20 filter contrast-125"
-          onerror="this.style.display='none'; document.getElementById('cameraFallbackSVG').style.display='block';"
+          class="w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.08)] opacity-25 filter contrast-125"
         />
-        <!-- Fallback SVG in case image file is still loading or missing -->
-        <svg id="cameraFallbackSVG" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full text-slate-800 opacity-15 hidden">
-          <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
-          <circle cx="12" cy="13" r="4"/>
-        </svg>
       </div>
     </div>
 
-    <!-- Floating Currency Note (Drifts in 3D opposite to mouse) -->
-    <div id="floatCash" class="absolute top-[55%] left-[8%] sm:left-[12%] w-48 sm:w-64 opacity-15 text-emerald-800 preserve-3d transition-transform duration-200 ease-out">
-      <svg viewBox="0 0 160 90" fill="none" stroke="currentColor" stroke-width="2" class="w-full h-full drop-shadow-md">
-        <rect x="4" y="4" width="152" height="82" rx="6" />
-        <circle cx="80" cy="45" r="22" />
-        <text x="80" y="53" font-size="24" font-weight="bold" fill="currentColor" text-anchor="middle">₹</text>
-        <circle cx="20" cy="20" r="5" fill="currentColor" fill-opacity="0.2"/>
-        <circle cx="140" cy="70" r="5" fill="currentColor" fill-opacity="0.2"/>
-      </svg>
-    </div>
-
-    <!-- Floating Polaroid Shoot Frame -->
-    <div id="floatPhoto" class="absolute bottom-28 right-[10%] w-44 sm:w-56 opacity-15 text-slate-700 preserve-3d transition-transform duration-200 ease-out">
-      <svg viewBox="0 0 100 120" fill="none" stroke="currentColor" stroke-width="2.5" class="w-full h-full drop-shadow-md">
-        <rect x="5" y="5" width="90" height="110" rx="4" />
-        <rect x="12" y="12" width="76" height="76" rx="2" fill="currentColor" fill-opacity="0.1" />
-        <circle cx="35" cy="40" r="7" fill="currentColor" fill-opacity="0.25" />
-        <path d="M16 75 L45 48 L80 75 Z" fill="currentColor" fill-opacity="0.25" />
-      </svg>
+    <!-- 2. 3D Floating Money (Emerges from below when scrolling down) -->
+    <div id="money3DWrapper" class="absolute top-[110%] left-[4%] sm:left-[10%] w-72 sm:w-96 preserve-3d transition-transform duration-100 ease-out">
+      <div class="animate-gentle-reverse">
+        <img 
+          id="money3DImage"
+          src="money.png" 
+          alt="Floating Currency" 
+          class="w-full h-auto object-contain drop-shadow-[0_25px_35px_rgba(16,185,129,0.12)] opacity-30 filter contrast-110"
+        />
+      </div>
     </div>
 
   </div>
@@ -392,7 +383,7 @@
     <p>&copy; 2026 SnapNear. Hyperlocal Creator Network Across India. All rights reserved.</p>
   </footer>
 
-  <!-- Scripts: Calculator & 3D Interactive Parallax Engine -->
+  <!-- Scripts: Calculator & 3D Interactive Scroll Engine -->
   <script>
     // 1. Calculator Engine
     const hourlySlider = document.getElementById('hourlySlider');
@@ -418,8 +409,7 @@
 
     // 2. 3D Scroll & Mouse Parallax Engine
     const cameraWrapper = document.getElementById('camera3DWrapper');
-    const floatCash = document.getElementById('floatCash');
-    const floatPhoto = document.getElementById('floatPhoto');
+    const moneyWrapper = document.getElementById('money3DWrapper');
 
     let mouseX = 0;
     let mouseY = 0;
@@ -427,44 +417,34 @@
     let targetY = 0;
     let currentScroll = 0;
 
-    // Track mouse position normalized (-1 to +1)
     window.addEventListener('mousemove', (e) => {
       mouseX = (e.clientX / window.innerWidth) * 2 - 1;
       mouseY = (e.clientY / window.innerHeight) * 2 - 1;
     });
 
-    // Track smooth scroll
     window.addEventListener('scroll', () => {
       currentScroll = window.scrollY;
     }, { passive: true });
 
-    // 60FPS Render Loop with lerp for organic floating feel
     function render3DScene() {
       targetX += (mouseX - targetX) * 0.05;
       targetY += (mouseY - targetY) * 0.05;
 
-      // Camera: tilts in 3D toward cursor, glides downward smoothly as user scrolls
+      // Camera: moves down slightly with scroll and tilts toward cursor
       if (cameraWrapper) {
-        const tiltX = -targetY * 18; // Degrees
-        const tiltY = targetX * 22;
-        const scrollOffsetY = currentScroll * 0.12; // Slides with scroll
-        cameraWrapper.style.transform = `translate3d(0, ${scrollOffsetY}px, 40px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        const tiltX = -targetY * 16;
+        const tiltY = targetX * 20;
+        const scrollCameraY = currentScroll * 0.14;
+        cameraWrapper.style.transform = `translate3d(0, ${scrollCameraY}px, 30px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
       }
 
-      // Money SVG: slight counter-tilt & faster scroll parallax
-      if (floatCash) {
-        const cashTiltX = targetY * 12;
-        const cashTiltY = -targetX * 15;
-        const scrollCashY = -currentScroll * 0.08;
-        floatCash.style.transform = `translate3d(0, ${scrollCashY}px, 20px) rotateX(${cashTiltX}deg) rotateY(${cashTiltY}deg)`;
-      }
-
-      // Photo SVG: subtle opposite drift
-      if (floatPhoto) {
-        const photoTiltX = targetY * 8;
-        const photoTiltY = targetX * 10;
-        const scrollPhotoY = -currentScroll * 0.05;
-        floatPhoto.style.transform = `translate3d(0, ${scrollPhotoY}px, 10px) rotateX(${photoTiltX}deg) rotateY(${photoTiltY}deg)`;
+      // Money: starts below view and rises up as the user scrolls down
+      if (moneyWrapper) {
+        const moneyTiltX = targetY * 14;
+        const moneyTiltY = -targetX * 18;
+        // As currentScroll increases, this pulls the money up into view
+        const scrollMoneyY = -(currentScroll * 0.55);
+        moneyWrapper.style.transform = `translate3d(0, ${scrollMoneyY}px, 20px) rotateX(${moneyTiltX}deg) rotateY(${moneyTiltY}deg)`;
       }
 
       requestAnimationFrame(render3DScene);
