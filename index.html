@@ -125,57 +125,38 @@
   </script>
 
   <style>
-    .perspective-stage {
-      perspective: 1200px;
-      perspective-origin: center center;
-    }
-    .preserve-3d {
-      transform-style: preserve-3d;
+    /* Hardware acceleration & smooth compositing */
+    .gpu-accelerated {
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+      perspective: 1000px;
       will-change: transform;
-    }
-    @keyframes gentlePulse {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(1.5deg); }
-    }
-    @keyframes gentleDrift {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(12px) rotate(-2deg); }
-    }
-    .animate-gentle {
-      animation: gentlePulse 8s ease-in-out infinite;
-    }
-    .animate-gentle-reverse {
-      animation: gentleDrift 10s ease-in-out infinite;
     }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-orange-500 selection:text-white relative overflow-x-hidden">
 
-  <!-- ================= 3D INTERACTIVE BACKGROUND SCENE ================= -->
-  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden perspective-stage" aria-hidden="true">
+  <!-- ================= BACKGROUND PARALLAX LAYER ================= -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
     
-    <!-- 1. 3D Floating Camera (Hero Section) -->
-    <div id="camera3DWrapper" class="absolute top-[18%] right-[2%] sm:right-[12%] w-80 sm:w-[460px] preserve-3d transition-transform duration-100 ease-out">
-      <div class="animate-gentle">
-        <img 
-          id="camera3DImage"
-          src="camera-3d.png" 
-          alt="3D Floating Camera" 
-          class="w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.08)] opacity-25 filter contrast-125"
-        />
-      </div>
+    <!-- 1. Floating Camera (Slides down gently on scroll) -->
+    <div id="camera3DWrapper" class="absolute top-[16%] right-[2%] sm:right-[10%] w-72 sm:w-[440px] gpu-accelerated">
+      <img 
+        id="camera3DImage"
+        src="camera-3d.png" 
+        alt="Floating Camera" 
+        class="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.08)] opacity-25 filter contrast-125"
+      />
     </div>
 
-    <!-- 2. 3D Floating Money (Emerges from below when scrolling down) -->
-    <div id="money3DWrapper" class="absolute top-[110%] left-[4%] sm:left-[10%] w-72 sm:w-96 preserve-3d transition-transform duration-100 ease-out">
-      <div class="animate-gentle-reverse">
-        <img 
-          id="money3DImage"
-          src="money.png" 
-          alt="Floating Currency" 
-          class="w-full h-auto object-contain drop-shadow-[0_25px_35px_rgba(16,185,129,0.12)] opacity-30 filter contrast-110"
-        />
-      </div>
+    <!-- 2. Floating Currency (Larger size, smoothly pulled up as you scroll down) -->
+    <div id="money3DWrapper" class="absolute top-[105%] left-[3%] sm:left-[8%] w-80 sm:w-[480px] gpu-accelerated">
+      <img 
+        id="money3DImage"
+        src="money.png" 
+        alt="Floating Currency" 
+        class="w-full h-auto object-contain drop-shadow-[0_25px_40px_rgba(16,185,129,0.12)] opacity-35 filter contrast-110"
+      />
     </div>
 
   </div>
@@ -191,7 +172,7 @@
     </div>
   </header>
 
-  <!-- Main Container -->
+  <!-- Main Content Container -->
   <main class="max-w-5xl mx-auto px-6 py-12 relative z-10">
 
     <!-- Hero Section -->
@@ -383,7 +364,7 @@
     <p>&copy; 2026 SnapNear. Hyperlocal Creator Network Across India. All rights reserved.</p>
   </footer>
 
-  <!-- Scripts: Calculator & 3D Interactive Scroll Engine -->
+  <!-- Scripts: Calculator & Jitter-Free GPU Parallax -->
   <script>
     // 1. Calculator Engine
     const hourlySlider = document.getElementById('hourlySlider');
@@ -407,50 +388,74 @@
     dailySlider.addEventListener('input', updateCalculator);
     updateCalculator();
 
-    // 2. 3D Scroll & Mouse Parallax Engine
+    // 2. High-Performance Scroll Parallax (Glitch-free on Mobile)
     const cameraWrapper = document.getElementById('camera3DWrapper');
     const moneyWrapper = document.getElementById('money3DWrapper');
+    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
-    let mouseX = 0;
-    let mouseY = 0;
-    let targetX = 0;
-    let targetY = 0;
+    let mouseX = 0, mouseY = 0;
+    let targetX = 0, targetY = 0;
     let currentScroll = 0;
+    let ticking = false;
 
-    window.addEventListener('mousemove', (e) => {
-      mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-      mouseY = (e.clientY / window.innerHeight) * 2 - 1;
-    });
+    // Track mouse tilt only on Desktop
+    if (!isTouchDevice) {
+      window.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+      });
+    }
 
     window.addEventListener('scroll', () => {
       currentScroll = window.scrollY;
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateParallax();
+          ticking = false;
+        });
+        ticking = true;
+      }
     }, { passive: true });
 
-    function render3DScene() {
-      targetX += (mouseX - targetX) * 0.05;
-      targetY += (mouseY - targetY) * 0.05;
+    function updateParallax() {
+      if (!isTouchDevice) {
+        targetX += (mouseX - targetX) * 0.08;
+        targetY += (mouseY - targetY) * 0.08;
+      }
 
-      // Camera: moves down slightly with scroll and tilts toward cursor
+      // Camera: moves down subtly with scroll
       if (cameraWrapper) {
-        const tiltX = -targetY * 16;
-        const tiltY = targetX * 20;
-        const scrollCameraY = currentScroll * 0.14;
-        cameraWrapper.style.transform = `translate3d(0, ${scrollCameraY}px, 30px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        const scrollCam = currentScroll * 0.12;
+        if (!isTouchDevice) {
+          const tiltX = -targetY * 12;
+          const tiltY = targetX * 14;
+          cameraWrapper.style.transform = `translate3d(0, ${scrollCam}px, 0) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        } else {
+          cameraWrapper.style.transform = `translate3d(0, ${scrollCam}px, 0)`;
+        }
       }
 
-      // Money: starts below view and rises up as the user scrolls down
+      // Money: pulls up from lower section as you scroll down
       if (moneyWrapper) {
-        const moneyTiltX = targetY * 14;
-        const moneyTiltY = -targetX * 18;
-        // As currentScroll increases, this pulls the money up into view
-        const scrollMoneyY = -(currentScroll * 0.55);
-        moneyWrapper.style.transform = `translate3d(0, ${scrollMoneyY}px, 20px) rotateX(${moneyTiltX}deg) rotateY(${moneyTiltY}deg)`;
+        const scrollMoney = -(currentScroll * 0.45);
+        if (!isTouchDevice) {
+          const tiltX = targetY * 10;
+          const tiltY = -targetX * 12;
+          moneyWrapper.style.transform = `translate3d(0, ${scrollMoney}px, 0) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        } else {
+          moneyWrapper.style.transform = `translate3d(0, ${scrollMoney}px, 0)`;
+        }
       }
-
-      requestAnimationFrame(render3DScene);
     }
 
-    render3DScene();
+    // Keep loop active on desktop for mouse tracking
+    if (!isTouchDevice) {
+      function desktopLoop() {
+        updateParallax();
+        requestAnimationFrame(desktopLoop);
+      }
+      desktopLoop();
+    }
   </script>
 
 </body>
