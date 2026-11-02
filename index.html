@@ -3,17 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Earn Money From Your Camera in India | SnapNear Creator Network</title>
-  <meta name="description" content="Turn your camera or smartphone into consistent monthly income. SnapNear connects local photographers and reel creators with nearby clients for doorstep shoots across India." />
+  <title>Earn Money From Your Camera in India | SnapNear Creator Partner</title>
+  <meta name="description" content="Monetize your DSLR or mirrorless camera with SnapNear. Earn up to ₹72,000 monthly with 1-hour and 1-day shoots. Transparent payouts via UPI within 48 hours." />
   <link rel="canonical" href="https://earn.snapnear.in" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="logo.png" />
+  <!-- OpenGraph / Social Meta Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Earn Money From Your Camera in India | SnapNear Partner Network" />
+  <meta property="og:description" content="Turn your camera into steady monthly income. Earn ₹2,400/day or ₹400/hr in-hand. Instant UPI settlements within 48 hours." />
+  <meta property="og:image" content="https://earn.snapnear.in/logo.png" />
+  <meta property="og:url" content="https://earn.snapnear.in" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- App Store Banner for Android -->
+  <!-- Favicon & Android App Integration -->
+  <link rel="icon" type="image/png" href="logo.png" />
   <meta name="google-play-app" content="app-id=in.snapnear.app" />
 
-  <!-- Google Structured Data: Organization & JobPosting Schema -->
+  <!-- Google Structured Data: Organization, JobPosting & FAQPage Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -24,19 +30,19 @@
         "name": "SnapNear",
         "url": "https://snapnear.in",
         "logo": "https://earn.snapnear.in/logo.png",
-        "description": "On-demand hyperlocal photography and videography booking platform in India.",
+        "description": "On-demand hyperlocal photography and videography platform connecting verified creators with nearby clients in India.",
         "sameAs": [
           "https://www.instagram.com/mysnapnear"
         ]
       },
       {
         "@type": "JobPosting",
-        "title": "Freelance Photographer & Reel Videographer",
-        "description": "<p>SnapNear is onboarding freelance creators, photographers, and mobile videographers across India. Earn by shooting local portraits, birthday events, business promos, and Instagram reels. Set your own packages and get paid directly by clients.</p>",
+        "title": "Freelance Camera Partner & Videographer",
+        "description": "<p>SnapNear is onboarding freelance photographers and videographers across India. Earn up to ₹72,000 per month with flexible 1-hour and full-day booking requests. Net earnings are ₹400/hour and ₹2,400/day after all platform and GST deductions, credited straight to your UPI ID within 48 hours.</p>",
         "identifier": {
           "@type": "PropertyValue",
           "name": "SnapNear",
-          "value": "SNAP-CREATOR-2026"
+          "value": "SNAP-PARTNER-2026"
         },
         "datePosted": "2026-11-01",
         "validThrough": "2027-12-31",
@@ -56,17 +62,54 @@
           "currency": "INR",
           "value": {
             "@type": "QuantitativeValue",
-            "minValue": 2500,
-            "maxValue": 15000,
+            "minValue": 400,
+            "maxValue": 2400,
             "unitText": "DAY"
           }
         }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How much can a photographer earn on SnapNear?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Photographers earn a clean in-hand rate of ₹400 per 1-hour shoot and ₹2,400 per 1-day shoot after all platform fees and GST deductions. Active creators handling multiple hourly and daily bookings can earn up to ₹72,000 monthly."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are the minimum gear requirements to join SnapNear?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Creators must own a good condition DSLR or mirrorless camera launched after 2015 (Sony Alpha, Canon EOS R/DSLR, Nikon Z/D-series, Fujifilm, etc.) along with appropriate lenses."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does the onboarding and verification process work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "After signing up as a partner, a SnapNear representative will conduct a quick verification call where you share your existing portfolio and social media profile to get approved."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How and when do I get paid?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Payouts can be claimed anytime and are deposited within 48 hours directly into your registered UPI ID automatically."
+            }
+          }
+        ]
       }
     ]
   }
   </script>
 
-  <!-- Tailwind CSS CDN for instant styling -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -74,89 +117,242 @@
         extend: {
           colors: {
             brandOrange: '#f97316',
-            brandDark: '#0f172a',
-            brandAccent: '#fb923c'
+            brandDark: '#090d16',
+            brandCard: '#0f172a'
           }
         }
       }
     }
   </script>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-orange-500 selection:text-white">
 
   <!-- Header -->
-  <header class="border-b border-slate-800 bg-slate-900/60 backdrop-blur sticky top-0 z-50">
+  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <!-- Brand Logo -->
         <img src="logo.png" alt="SnapNear Logo" class="w-9 h-9 rounded-xl object-contain shadow-md" />
         <span class="text-xl font-bold tracking-tight text-white">Snap<span class="text-brandOrange">Near</span></span>
       </div>
-      <a href="https://snapnear.in" class="text-sm text-slate-400 hover:text-white transition">Visit Main Site &rarr;</a>
+      <a href="https://www.snapnear.in" class="text-sm text-slate-400 hover:text-white transition">Visit Main Site &rarr;</a>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <main class="max-w-4xl mx-auto px-6 py-16 text-center">
-    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-semibold mb-6">
-      🚀 Early Creator Access Open • Available Across India
-    </div>
+  <!-- Main Container -->
+  <main class="max-w-5xl mx-auto px-6 py-12">
 
-    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
-      Turn Your Camera Gear Into <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-500">Steady Monthly Income</span>
-    </h1>
-
-    <p class="mt-6 text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
-      You don't need giant wedding contracts to make money. SnapNear connects you with local cafes, personal brands, and clients across India who need quick reels, portraits, and event coverage.
-    </p>
-
-    <!-- Call to Actions -->
-    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="https://www.snapnear.in/signup?role=partner" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 font-bold text-white shadow-lg shadow-orange-500/20 transition transform active:scale-95">
-        Join as a Creator (Free)
-      </a>
-      <a href="#how-it-works" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-800 hover:bg-slate-700 font-medium text-slate-300 transition">
-        How It Works
-      </a>
-    </div>
-
-    <!-- Features / Earnings Grid -->
-    <section id="how-it-works" class="mt-24 text-left grid sm:grid-cols-3 gap-6">
-      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
-        <div class="text-3xl mb-4">📸</div>
-        <h3 class="text-lg font-bold text-white">Monetize Any Gear</h3>
-        <p class="mt-2 text-sm text-slate-400">Whether you shoot on a Sony Alpha, Canon, or iPhone, get booked for jobs suited to your setup.</p>
+    <!-- Hero Section -->
+    <div class="text-center max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-semibold mb-6">
+        🚀 Early Creator Access Open • Available Across India
       </div>
 
-      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
-        <div class="text-3xl mb-4">💰</div>
-        <h3 class="text-lg font-bold text-white">Set Your Own Rates</h3>
-        <p class="mt-2 text-sm text-slate-400">Fixed rate packages. You decide your pricing per reel, per hour, or per full shoot with transparent terms.</p>
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
+        Turn Your Camera Into Up To <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-500">₹72,000 / Month</span>
+      </h1>
+
+      <p class="mt-6 text-base sm:text-lg text-slate-400 leading-relaxed">
+        Put your mirrorless or DSLR gear to work. Get transparent, booked shoots in your city with net in-hand earnings credited straight to your UPI within 48 hours.
+      </p>
+
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://www.snapnear.in/signup?role=partner" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 font-bold text-white shadow-lg shadow-orange-500/25 transition transform active:scale-95 text-center">
+          Join as a Partner
+        </a>
+        <a href="#calculator" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 font-medium text-slate-300 transition text-center">
+          Calculate Your Earnings &darr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Rate Breakdown Cards -->
+    <section class="mt-16 grid sm:grid-cols-2 gap-6">
+      <div class="p-6 rounded-2xl bg-slate-900/90 border border-slate-800 relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-4 text-xs font-bold text-orange-400 bg-orange-500/10 rounded-bl-xl border-b border-l border-orange-500/20">
+          Clean In-Hand Payout
+        </div>
+        <span class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Short-Form & Reels</span>
+        <h3 class="text-3xl font-extrabold text-white mt-2">₹400 <span class="text-base font-medium text-slate-400">/ 1-Hour Shoot</span></h3>
+        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+          Ideal for quick cafe reels, business social promos, and portraits. If you shoot 8 sessions in a day, that is <strong>₹3,200/day</strong> directly in your pocket.
+        </p>
+        <div class="mt-4 text-xs text-emerald-400 flex items-center gap-1.5 font-medium">
+          ✓ All platform fees and GST already deducted
+        </div>
       </div>
 
-      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
-        <div class="text-3xl mb-4">📍</div>
-        <h3 class="text-lg font-bold text-white">Hyperlocal Shoots</h3>
-        <p class="mt-2 text-sm text-slate-400">Never travel across states for small gigs. Get shoot requests right in your own city and neighborhood.</p>
+      <div class="p-6 rounded-2xl bg-slate-900/90 border border-slate-800 relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-4 text-xs font-bold text-orange-400 bg-orange-500/10 rounded-bl-xl border-b border-l border-orange-500/20">
+          Clean In-Hand Payout
+        </div>
+        <span class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Full Day Gigs & Events</span>
+        <h3 class="text-3xl font-extrabold text-white mt-2">₹2,400 <span class="text-base font-medium text-slate-400">/ 1-Day Shoot</span></h3>
+        <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+          Full coverage for birthday celebrations, pre-weddings, family events, and day-long media productions with zero negotiation headaches.
+        </p>
+        <div class="mt-4 text-xs text-emerald-400 flex items-center gap-1.5 font-medium">
+          ✓ Guaranteed 48-hour UPI deposit upon claiming
+        </div>
       </div>
     </section>
 
-    <!-- Bottom Conversion Card -->
-    <section class="mt-20 p-8 rounded-3xl bg-gradient-to-b from-slate-900 to-slate-950 border border-orange-500/30 text-center">
-      <h2 class="text-2xl font-bold text-white">Have Gear Sitting Idle?</h2>
-      <p class="mt-2 text-sm text-slate-400">Create your portfolio preview in 2 minutes and start receiving direct inquiries.</p>
-      <div class="mt-6">
-        <a href="https://www.snapnear.in/signup?role=partner" class="inline-block px-8 py-3.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-semibold shadow-md transition">
-          Claim Your Profile
+    <!-- Interactive Earnings Calculator -->
+    <section id="calculator" class="mt-16 p-8 rounded-3xl bg-slate-900/70 border border-orange-500/30">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white">Interactive Earnings Estimator</h2>
+        <p class="mt-2 text-sm text-slate-400">Adjust the sliders to estimate how much you can earn every month.</p>
+
+        <div class="mt-8 space-y-6 text-left">
+          <!-- Slider 1 -->
+          <div>
+            <div class="flex justify-between items-center text-sm font-semibold mb-2">
+              <span class="text-slate-300">1-Hour Sessions per Month (₹400/ea):</span>
+              <span id="hourlyCountLabel" class="text-orange-400 font-bold text-base">30 shoots</span>
+            </div>
+            <input type="range" id="hourlySlider" min="0" max="80" value="30" step="5" class="w-full accent-orange-500 bg-slate-800 rounded-lg cursor-pointer h-2" />
+          </div>
+
+          <!-- Slider 2 -->
+          <div>
+            <div class="flex justify-between items-center text-sm font-semibold mb-2">
+              <span class="text-slate-300">Full-Day Shoots per Month (₹2,400/ea):</span>
+              <span id="dailyCountLabel" class="text-orange-400 font-bold text-base">15 days</span>
+            </div>
+            <input type="range" id="dailySlider" min="0" max="25" value="15" step="1" class="w-full accent-orange-500 bg-slate-800 rounded-lg cursor-pointer h-2" />
+          </div>
+        </div>
+
+        <!-- Calculated Card -->
+        <div class="mt-8 p-6 rounded-2xl bg-slate-950 border border-slate-800 text-center">
+          <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Estimated Monthly Net Income</span>
+          <div id="totalEarnings" class="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mt-2">
+            ₹48,000
+          </div>
+          <p class="text-xs text-slate-500 mt-2">Based on ₹400/hr + ₹2,400/day net in-hand payout rates.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gear Requirements & Verification Roadmap -->
+    <section class="mt-20 grid md:grid-cols-2 gap-8 items-start">
+      
+      <!-- Left: Gear Requirements -->
+      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+        <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-orange-500/10 text-orange-400 text-xl font-bold mb-4">
+          📷
+        </div>
+        <h3 class="text-xl font-bold text-white">Eligible Equipment Criteria</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed">
+          SnapNear maintains standard visual quality for all clients. To qualify as a creator partner, you need:
+        </p>
+        <ul class="mt-4 space-y-3 text-sm text-slate-300">
+          <li class="flex items-start gap-2">
+            <span class="text-orange-400 font-bold">✓</span>
+            <span>A solid <strong>DSLR or Mirrorless Camera</strong> launched in <strong>2015 or newer</strong>.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-orange-400 font-bold">✓</span>
+            <span>Compatible brands: Sony Alpha, Canon EOS R/DSLR, Nikon Z/D-series, Fujifilm, Lumix.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-orange-400 font-bold">✓</span>
+            <span>Proper functioning lenses suitable for portrait or event work.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right: Fast 3-Step Verification -->
+      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+        <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-orange-500/10 text-orange-400 text-xl font-bold mb-4">
+          ⚡
+        </div>
+        <h3 class="text-xl font-bold text-white">How Onboarding Works</h3>
+        <ol class="mt-4 space-y-4 text-sm text-slate-300">
+          <li class="flex gap-3">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-slate-800 text-orange-400 text-xs font-bold flex items-center justify-center border border-slate-700">1</span>
+            <div>
+              <strong>Sign Up Online:</strong> Fill out your details in under 2 minutes at our partner portal.
+            </div>
+          </li>
+          <li class="flex gap-3">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-slate-800 text-orange-400 text-xs font-bold flex items-center justify-center border border-slate-700">2</span>
+            <div>
+              <strong>Verification Call:</strong> A SnapNear representative calls you to verify your camera gear and review your portfolio or active Instagram profile.
+            </div>
+          </li>
+          <li class="flex gap-3">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-slate-800 text-orange-400 text-xs font-bold flex items-center justify-center border border-slate-700">3</span>
+            <div>
+              <strong>Instant 48-Hr UPI Payouts:</strong> Start accepting nearby shoots. Claim your earnings anytime and receive the money directly into your UPI ID within 48 hours.
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="mt-20">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white text-center">Frequently Asked Questions</h2>
+      <div class="mt-8 space-y-4 max-w-3xl mx-auto">
+        <div class="p-5 rounded-xl bg-slate-900 border border-slate-800">
+          <h4 class="font-semibold text-white">Are there any hidden cuts or commissions on my earnings?</h4>
+          <p class="text-sm text-slate-400 mt-1">No. The ₹400/hour and ₹2,400/day rates are net payouts after all platform fees and GST deductions.</p>
+        </div>
+
+        <div class="p-5 rounded-xl bg-slate-900 border border-slate-800">
+          <h4 class="font-semibold text-white">How quickly do I get paid after completing a shoot?</h4>
+          <p class="text-sm text-slate-400 mt-1">Once you tap claim in your partner dashboard, your funds are automatically sent to your registered UPI ID within 48 hours.</p>
+        </div>
+
+        <div class="p-5 rounded-xl bg-slate-900 border border-slate-800">
+          <h4 class="font-semibold text-white">Can I shoot part-time on weekends only?</h4>
+          <p class="text-sm text-slate-400 mt-1">Yes. You set your availability. Whether you want 1 shoot a week or 8 shoots a day, you remain in complete control of your schedule.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA Banner -->
+    <section class="mt-20 p-8 sm:p-12 rounded-3xl bg-gradient-to-b from-slate-900 to-slate-950 border border-orange-500/40 text-center">
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Ready to Put Your Camera to Work?</h2>
+      <p class="mt-3 text-slate-400 text-sm sm:text-base max-w-xl mx-auto">
+        Join hundreds of verified creators earning steady payouts in their own cities across India.
+      </p>
+      <div class="mt-8">
+        <a href="https://www.snapnear.in/signup?role=partner" class="inline-block px-10 py-4 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold shadow-lg shadow-orange-500/20 transition transform active:scale-95">
+          Sign Up as a Partner
         </a>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-900 py-8 text-center text-xs text-slate-600">
-    <p>&copy; 2026 SnapNear. All rights reserved. Connecting local creators across India.</p>
+  <footer class="border-t border-slate-900 py-8 text-center text-xs text-slate-600 mt-16">
+    <p>&copy; 2026 SnapNear. Hyperlocal Creator Network Across India. All rights reserved.</p>
   </footer>
+
+  <!-- Interactive Calculator Script -->
+  <script>
+    const hourlySlider = document.getElementById('hourlySlider');
+    const dailySlider = document.getElementById('dailySlider');
+    const hourlyCountLabel = document.getElementById('hourlyCountLabel');
+    const dailyCountLabel = document.getElementById('dailyCountLabel');
+    const totalEarnings = document.getElementById('totalEarnings');
+
+    function updateCalculator() {
+      const hourly = parseInt(hourlySlider.value);
+      const daily = parseInt(dailySlider.value);
+
+      hourlyCountLabel.textContent = `${hourly} shoots`;
+      dailyCountLabel.textContent = `${daily} days`;
+
+      const total = (hourly * 400) + (daily * 2400);
+      totalEarnings.textContent = `₹${total.toLocaleString('en-IN')}`;
+    }
+
+    hourlySlider.addEventListener('input', updateCalculator);
+    dailySlider.addEventListener('input', updateCalculator);
+    updateCalculator();
+  </script>
 
 </body>
 </html>
